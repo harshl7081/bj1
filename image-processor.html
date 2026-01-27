@@ -1,0 +1,697 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jewelry Image Processor - Beautiful Jewel</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap"
+        rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #0f0f0f 0%, #1a1a1a 100%);
+            color: #ffffff;
+            min-height: 100vh;
+            padding: 40px 20px;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            text-align: center;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #d4af37 0%, #f4e4c1 50%, #d4af37 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: 2px;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #a0a0a0;
+            margin-bottom: 3rem;
+            font-size: 1.1rem;
+        }
+
+        .controls {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            border-radius: 20px;
+            padding: 30px;
+            margin-bottom: 40px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        }
+
+        .control-group {
+            margin-bottom: 25px;
+        }
+
+        .control-group:last-child {
+            margin-bottom: 0;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 10px;
+            color: #d4af37;
+            font-weight: 500;
+            font-size: 0.95rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        input[type="file"] {
+            display: none;
+        }
+
+        .file-upload-btn {
+            display: inline-block;
+            padding: 15px 40px;
+            background: linear-gradient(135deg, #d4af37 0%, #c9a961 100%);
+            color: #000;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
+        }
+
+        .file-upload-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(212, 175, 55, 0.5);
+        }
+
+        .color-options {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+        }
+
+        .color-option {
+            position: relative;
+        }
+
+        .color-option input[type="radio"] {
+            display: none;
+        }
+
+        .color-option label {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 15px 20px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: none;
+            letter-spacing: 0;
+        }
+
+        .color-option input[type="radio"]:checked+label {
+            background: rgba(212, 175, 55, 0.15);
+            border-color: #d4af37;
+            box-shadow: 0 0 20px rgba(212, 175, 55, 0.3);
+        }
+
+        .color-swatch {
+            width: 40px;
+            height: 40px;
+            border-radius: 8px;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            flex-shrink: 0;
+        }
+
+        .slider-group {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .slider-control {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .slider-label {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .slider-value {
+            color: #d4af37;
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+
+        input[type="range"] {
+            width: 100%;
+            height: 6px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 5px;
+            outline: none;
+            -webkit-appearance: none;
+            appearance: none;
+        }
+
+        input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 20px;
+            height: 20px;
+            background: linear-gradient(135deg, #d4af37 0%, #c9a961 100%);
+            border-radius: 50%;
+            cursor: pointer;
+            box-shadow: 0 2px 10px rgba(212, 175, 55, 0.5);
+        }
+
+        input[type="range"]::-moz-range-thumb {
+            width: 20px;
+            height: 20px;
+            background: linear-gradient(135deg, #d4af37 0%, #c9a961 100%);
+            border-radius: 50%;
+            cursor: pointer;
+            border: none;
+            box-shadow: 0 2px 10px rgba(212, 175, 55, 0.5);
+        }
+
+        select {
+            width: 100%;
+            padding: 12px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 8px;
+            color: #fff;
+            font-size: 1rem;
+            cursor: pointer;
+        }
+
+        select option {
+            background: #1a1a1a;
+            color: #fff;
+        }
+
+        .process-btn {
+            width: 100%;
+            padding: 18px;
+            background: linear-gradient(135deg, #d4af37 0%, #c9a961 100%);
+            color: #000;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            box-shadow: 0 6px 25px rgba(212, 175, 55, 0.4);
+        }
+
+        .process-btn:hover:not(:disabled) {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 30px rgba(212, 175, 55, 0.6);
+        }
+
+        .process-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .image-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            border-radius: 20px;
+            padding: 20px;
+            transition: all 0.3s ease;
+            overflow: hidden;
+        }
+
+        .image-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 40px rgba(212, 175, 55, 0.3);
+            border-color: rgba(212, 175, 55, 0.5);
+        }
+
+        .image-card h3 {
+            font-family: 'Playfair Display', serif;
+            color: #d4af37;
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+        }
+
+        .image-wrapper {
+            position: relative;
+            width: 100%;
+            padding-bottom: 100%;
+            background: #000;
+            border-radius: 12px;
+            overflow: hidden;
+            margin-bottom: 15px;
+        }
+
+        .image-wrapper canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .download-btn {
+            width: 100%;
+            padding: 12px;
+            background: rgba(212, 175, 55, 0.2);
+            color: #d4af37;
+            border: 1px solid #d4af37;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .download-btn:hover {
+            background: #d4af37;
+            color: #000;
+            transform: scale(1.02);
+        }
+
+        .loading {
+            text-align: center;
+            padding: 40px;
+            color: #d4af37;
+            font-size: 1.2rem;
+        }
+
+        .spinner {
+            border: 3px solid rgba(212, 175, 55, 0.3);
+            border-top: 3px solid #d4af37;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            animation: spin 1s linear infinite;
+            margin: 20px auto;
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        .info-box {
+            background: rgba(212, 175, 55, 0.1);
+            border-left: 4px solid #d4af37;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+        }
+
+        .info-box h3 {
+            color: #d4af37;
+            margin-bottom: 10px;
+            font-size: 1.1rem;
+        }
+
+        .info-box ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .info-box li {
+            padding: 5px 0;
+            color: #c0c0c0;
+        }
+
+        .info-box li:before {
+            content: "✓ ";
+            color: #d4af37;
+            font-weight: bold;
+            margin-right: 8px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Jewelry Image Processor</h1>
+        <p class="subtitle">Standardize your product photos with uniform backgrounds and Beautiful logo</p>
+
+        <div class="info-box">
+            <h3>What This Tool Does:</h3>
+            <ul>
+                <li>Applies uniform background color across all photos</li>
+                <li>Adds your "Beautiful" logo to all images consistently</li>
+                <li>Ensures consistent dimensions and styling</li>
+                <li>Maintains high quality for web use</li>
+            </ul>
+        </div>
+
+        <div class="controls">
+            <div class="control-group">
+                <label>Upload Product Images</label>
+                <input type="file" id="fileInput" accept="image/*" multiple>
+                <label for="fileInput" class="file-upload-btn">Choose Images</label>
+                <div id="fileCount" style="margin-top: 10px; color: #a0a0a0;"></div>
+            </div>
+
+            <div class="control-group">
+                <label>Upload "Beautiful" Logo</label>
+                <input type="file" id="logoInput" accept="image/*">
+                <label for="logoInput" class="file-upload-btn"
+                    style="background: rgba(212, 175, 55, 0.3); font-size: 0.9rem; padding: 12px 30px;">Choose
+                    Logo</label>
+                <div id="logoStatus" style="margin-top: 10px; color: #a0a0a0;"></div>
+            </div>
+
+            <div class="control-group">
+                <label>Background Color</label>
+                <div class="color-options">
+                    <div class="color-option">
+                        <input type="radio" name="bgColor" id="black" value="#000000" checked>
+                        <label for="black">
+                            <div class="color-swatch" style="background: #000000;"></div>
+                            <span>Pure Black</span>
+                        </label>
+                    </div>
+                    <div class="color-option">
+                        <input type="radio" name="bgColor" id="darkGray" value="#1a1a1a">
+                        <label for="darkGray">
+                            <div class="color-swatch" style="background: #1a1a1a;"></div>
+                            <span>Dark Gray</span>
+                        </label>
+                    </div>
+                    <div class="color-option">
+                        <input type="radio" name="bgColor" id="cream" value="#f5f5dc">
+                        <label for="cream">
+                            <div class="color-swatch" style="background: #f5f5dc;"></div>
+                            <span>Cream</span>
+                        </label>
+                    </div>
+                    <div class="color-option">
+                        <input type="radio" name="bgColor" id="white" value="#ffffff">
+                        <label for="white">
+                            <div class="color-swatch" style="background: #ffffff;"></div>
+                            <span>Pure White</span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="control-group">
+                <label>Logo Settings</label>
+                <div class="slider-group">
+                    <div class="slider-control">
+                        <div class="slider-label">
+                            <span>Logo Size</span>
+                            <span class="slider-value" id="logoSizeValue">60%</span>
+                        </div>
+                        <input type="range" id="logoSize" min="20" max="80" value="60" step="5">
+                    </div>
+                    <div class="slider-control">
+                        <div class="slider-label">
+                            <span>Logo Position</span>
+                        </div>
+                        <select id="logoPosition">
+                            <option value="left-top" selected>Left Top (Big)</option>
+                            <option value="left">Left (Centered)</option>
+                            <option value="right">Right (Centered)</option>
+                            <option value="top-left">Top Left (Small)</option>
+                            <option value="top-center">Top Center</option>
+                            <option value="top-right">Top Right</option>
+                            <option value="center">Center</option>
+                            <option value="bottom-left">Bottom Left</option>
+                            <option value="bottom-center">Bottom Center</option>
+                            <option value="bottom-right">Bottom Right</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <div class="control-group">
+                <label>Image Adjustments</label>
+                <div class="slider-group">
+                    <div class="slider-control">
+                        <div class="slider-label">
+                            <span>Brightness</span>
+                            <span class="slider-value" id="brightnessValue">100%</span>
+                        </div>
+                        <input type="range" id="brightness" min="50" max="150" value="100" step="5">
+                    </div>
+                    <div class="slider-control">
+                        <div class="slider-label">
+                            <span>Contrast</span>
+                            <span class="slider-value" id="contrastValue">100%</span>
+                        </div>
+                        <input type="range" id="contrast" min="50" max="150" value="100" step="5">
+                    </div>
+                </div>
+            </div>
+
+            <button class="process-btn" id="processBtn" disabled>Process Images</button>
+        </div>
+
+        <div id="gallery" class="gallery"></div>
+        <div id="loading" class="loading" style="display: none;">
+            <div class="spinner"></div>
+            <p>Processing your images...</p>
+        </div>
+    </div>
+
+    <script>
+        const fileInput = document.getElementById('fileInput');
+        const logoInput = document.getElementById('logoInput');
+        const fileCount = document.getElementById('fileCount');
+        const logoStatus = document.getElementById('logoStatus');
+        const processBtn = document.getElementById('processBtn');
+        const gallery = document.getElementById('gallery');
+        const loading = document.getElementById('loading');
+
+        const logoSizeSlider = document.getElementById('logoSize');
+        const logoPositionSelect = document.getElementById('logoPosition');
+        const brightnessSlider = document.getElementById('brightness');
+        const contrastSlider = document.getElementById('contrast');
+
+        logoSizeSlider.addEventListener('input', (e) => {
+            document.getElementById('logoSizeValue').textContent = e.target.value + '%';
+        });
+
+        brightnessSlider.addEventListener('input', (e) => {
+            document.getElementById('brightnessValue').textContent = e.target.value + '%';
+        });
+
+        contrastSlider.addEventListener('input', (e) => {
+            document.getElementById('contrastValue').textContent = e.target.value + '%';
+        });
+
+        let selectedFiles = [];
+        let logoImage = null;
+
+        fileInput.addEventListener('change', (e) => {
+            selectedFiles = Array.from(e.target.files);
+            fileCount.textContent = `${selectedFiles.length} image(s) selected`;
+            updateProcessButton();
+        });
+
+        logoInput.addEventListener('change', (e) => {
+            if (e.target.files.length > 0) {
+                const reader = new FileReader();
+                reader.onload = (event) => {
+                    const img = new Image();
+                    img.onload = () => {
+                        logoImage = img;
+                        logoStatus.textContent = '✓ Logo loaded successfully';
+                        logoStatus.style.color = '#d4af37';
+                        updateProcessButton();
+                    };
+                    img.src = event.target.result;
+                };
+                reader.readAsDataURL(e.target.files[0]);
+            }
+        });
+
+        function updateProcessButton() {
+            processBtn.disabled = selectedFiles.length === 0 || logoImage === null;
+            if (selectedFiles.length > 0 && logoImage === null) {
+                logoStatus.textContent = '⚠ Please upload a logo to continue';
+                logoStatus.style.color = '#ff9800';
+            }
+        }
+
+        processBtn.addEventListener('click', async () => {
+            if (selectedFiles.length === 0 || !logoImage) return;
+
+            gallery.innerHTML = '';
+            loading.style.display = 'block';
+            processBtn.disabled = true;
+
+            const bgColor = document.querySelector('input[name="bgColor"]:checked').value;
+            const logoSize = parseInt(logoSizeSlider.value);
+            const logoPosition = logoPositionSelect.value;
+            const brightness = parseInt(brightnessSlider.value);
+            const contrast = parseInt(contrastSlider.value);
+
+            for (let i = 0; i < selectedFiles.length; i++) {
+                await processImage(selectedFiles[i], i, bgColor, logoSize, logoPosition, brightness, contrast);
+            }
+
+            loading.style.display = 'none';
+            processBtn.disabled = false;
+        });
+
+        async function processImage(file, index, bgColor, logoSize, logoPosition, brightness, contrast) {
+            return new Promise((resolve) => {
+                const reader = new FileReader();
+
+                reader.onload = (e) => {
+                    const img = new Image();
+                    img.onload = () => {
+                        const canvas = document.createElement('canvas');
+                        const ctx = canvas.getContext('2d');
+
+                        // Set canvas size (square format for consistency)
+                        const size = Math.max(img.width, img.height);
+                        canvas.width = size;
+                        canvas.height = size;
+
+                        // Fill background
+                        ctx.fillStyle = bgColor;
+                        ctx.fillRect(0, 0, size, size);
+
+                        // Apply filters and center the image
+                        ctx.filter = `brightness(${brightness}%) contrast(${contrast}%)`;
+                        const x = (size - img.width) / 2;
+                        const y = (size - img.height) / 2;
+                        ctx.drawImage(img, x, y, img.width, img.height);
+
+                        // Reset filter for logo
+                        ctx.filter = 'none';
+
+                        // Draw logo
+                        if (logoImage) {
+                            const logoWidth = (size * logoSize) / 100;
+                            const logoHeight = (logoImage.height / logoImage.width) * logoWidth;
+                            const padding = size * 0.04;
+
+                            let logoX, logoY;
+
+                            switch (logoPosition) {
+                                case 'left-top':
+                                    logoX = padding * 2;
+                                    logoY = padding * 2;
+                                    break;
+                                case 'left':
+                                    logoX = padding;
+                                    logoY = (size - logoHeight) / 2;
+                                    break;
+                                case 'right':
+                                    logoX = size - logoWidth - padding;
+                                    logoY = (size - logoHeight) / 2;
+                                    break;
+                                case 'top-left':
+                                    logoX = padding;
+                                    logoY = padding;
+                                    break;
+                                case 'top-center':
+                                    logoX = (size - logoWidth) / 2;
+                                    logoY = padding;
+                                    break;
+                                case 'top-right':
+                                    logoX = size - logoWidth - padding;
+                                    logoY = padding;
+                                    break;
+                                case 'center':
+                                    logoX = (size - logoWidth) / 2;
+                                    logoY = (size - logoHeight) / 2;
+                                    break;
+                                case 'bottom-left':
+                                    logoX = padding;
+                                    logoY = size - logoHeight - padding;
+                                    break;
+                                case 'bottom-center':
+                                    logoX = (size - logoWidth) / 2;
+                                    logoY = size - logoHeight - padding;
+                                    break;
+                                case 'bottom-right':
+                                    logoX = size - logoWidth - padding;
+                                    logoY = size - logoHeight - padding;
+                                    break;
+                                default:
+                                    logoX = padding;
+                                    logoY = (size - logoHeight) / 2;
+                            }
+
+                            ctx.drawImage(logoImage, logoX, logoY, logoWidth, logoHeight);
+                        }
+
+                        // Create card
+                        const card = document.createElement('div');
+                        card.className = 'image-card';
+                        card.innerHTML = `
+                            <h3>Image ${index + 1}</h3>
+                            <div class="image-wrapper">
+                                <canvas></canvas>
+                            </div>
+                            <button class="download-btn" onclick="downloadImage(${index})">Download</button>
+                        `;
+
+                        const cardCanvas = card.querySelector('canvas');
+                        cardCanvas.width = canvas.width;
+                        cardCanvas.height = canvas.height;
+                        const cardCtx = cardCanvas.getContext('2d');
+                        cardCtx.drawImage(canvas, 0, 0);
+
+                        cardCanvas.dataset.index = index;
+                        gallery.appendChild(card);
+                        resolve();
+                    };
+                    img.src = e.target.result;
+                };
+
+                reader.readAsDataURL(file);
+            });
+        }
+
+        function downloadImage(index) {
+            const canvas = document.querySelector(`canvas[data-index="${index}"]`);
+            const link = document.createElement('a');
+            link.download = `beautiful-jewelry-${index + 1}.png`;
+            link.href = canvas.toDataURL('image/png');
+            link.click();
+        }
+    </script>
+</body>
+
+</html>
