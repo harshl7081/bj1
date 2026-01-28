@@ -193,11 +193,20 @@ body {
 .hero-small .hero-title {
   font-size: clamp(2.2rem, 5vw, 4rem);
   margin-bottom: 15px;
+  color: var(--fg-italy);
+  /* Dark text for visibility */
+  text-shadow: 0 4px 12px rgba(228, 192, 102, 0.25);
+  /* Subtle gold shadow */
+  white-space: normal;
+  /* Allow wrapping on inner pages if needed */
 }
 
 .hero-small .hero-subtitle {
   margin: 0 auto;
   max-width: 700px;
+  color: #58534b;
+  /* Darker subtitle for better reading */
+  text-shadow: none;
 }
 
 /* HERO (luxury Italian landing) */
