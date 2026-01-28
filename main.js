@@ -1,12 +1,36 @@
-// Header scroll effect
+// Header scroll effect with Smart Hide/Show (Apple style)
 const header = document.querySelector('.header');
+let lastScrollTop = 0;
+const delta = 5;
+const navbarHeight = header.offsetHeight;
+
 window.addEventListener('scroll', () => {
-    if (window.scrollY > 50) {
+    let st = window.scrollY; // Removed pageYOffset for modern standard
+
+    // Make sure they scroll more than delta
+    if (Math.abs(lastScrollTop - st) <= delta)
+        return;
+
+    // If they scrolled down and are past the navbar, hide it
+    if (st > lastScrollTop && st > navbarHeight) {
+        // Scroll Down
+        header.classList.add('nav-hidden');
+    } else {
+        // Scroll Up
+        if (st + window.innerHeight < document.body.scrollHeight) {
+            header.classList.remove('nav-hidden');
+        }
+    }
+
+    // Visual style for scrolled state (transparency/shadow)
+    if (st > 10) {
         header.classList.add('scrolled');
     } else {
         header.classList.remove('scrolled');
     }
-});
+
+    lastScrollTop = st;
+}, { passive: true });
 
 const heroContent = document.querySelector('.hero-content');
 const heroMedia = document.querySelector('.hero-img, .hero-video');

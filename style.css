@@ -53,108 +53,95 @@ body {
 }
 
 /* HEADER NAV (Classic Italian branding) */
+/* HEADER NAV (Classic Italian branding) - Apple Style Redesign */
 .header {
   position: fixed;
   top: 0;
   left: 0;
   width: 100vw;
-  background: rgba(251, 248, 236, .95);
-  border-bottom: 2px solid var(--glass-border-italy);
-  backdrop-filter: blur(12px);
-  box-shadow: var(--shadow-soft);
+  background: rgba(253, 250, 242, 0.9);
+  /* Slightly more opaque for better contrast */
+  border-bottom: 1px solid rgba(23, 51, 60, 0.05);
+  backdrop-filter: saturate(180%) blur(12px);
+  -webkit-backdrop-filter: saturate(180%) blur(12px);
   z-index: 1200;
-  padding-block: 12px;
-  transition: var(--transition-fine);
+  padding-block: 0;
+  /* Removing padding to control height via nav */
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), background 0.3s ease, box-shadow 0.3s ease;
+}
+
+.header.nav-hidden {
+  transform: translateY(-100%);
 }
 
 .header.scrolled {
-  background: rgba(251, 248, 236, .92);
-  padding-block: 8px;
-  border-bottom: 2.4px solid var(--accent-oro-light);
-  box-shadow: 0 2.5px 24px rgba(180, 160, 75, .11);
+  background: rgba(253, 250, 242, 0.96);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
 }
 
 .nav {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  min-height: 140px;
+  min-height: 64px;
+  /* Increased from 48px to accommodate the logo */
+  max-width: 1200px;
+  /* Wider container for better spacing */
+  margin: 0 auto;
 }
 
 .logo img {
-  height: 140px;
+  height: 48px;
+  /* Significantly larger for legibility */
   width: auto;
-  filter: drop-shadow(0 3px 12px rgba(228, 192, 102, 0.4)) drop-shadow(0 1px 3px rgba(0, 0, 0, 0.2));
-  transition: var(--transition-fine);
-  /* Safari rendering fixes for crisp SVG display */
-  image-rendering: -webkit-optimize-contrast;
-  image-rendering: crisp-edges;
   transform: translate3d(0, 0, 0);
-  backface-visibility: hidden;
-  -webkit-backface-visibility: hidden;
-  -webkit-font-smoothing: subpixel-antialiased;
-}
-
-.logo:hover img {
-  filter: drop-shadow(0 5px 20px rgba(228, 192, 102, 0.6)) drop-shadow(0 2px 6px rgba(0, 0, 0, 0.3));
-  transform: translateY(-2px) scale(1.03);
+  /* Safari-friendly hardware acceleration */
+  display: block;
 }
 
 .nav-links {
   display: flex;
   list-style: none;
-  gap: 1.5rem;
+  gap: 2.2rem;
+  /* Spaced out cleanly */
   align-items: center;
+  margin: 0;
+  padding: 0;
 }
 
 .nav-links a {
   color: var(--fg-italy);
-  font-family: var(--fnt-display);
-  font-size: 0.7rem;
-  font-weight: 800;
-  letter-spacing: 1.8px;
-  text-transform: uppercase;
+  /* Keeping brand color but cleaner */
+  font-family: var(--fnt-sans);
+  /* Montserrat */
+  font-size: 12px;
+  /* Small, Apple-like */
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  /* Tight tracking like SF Pro */
   text-decoration: none;
-  padding: .4em 1em .35em;
-  border: none;
-  border-radius: var(--radius-small);
-  position: relative;
-  transition: var(--transition-fine);
-  opacity: 0.9;
+  opacity: 0.8;
+  transition: opacity 0.2s ease;
   background: transparent;
+  padding: 0;
 }
 
 .nav-links a::after {
-  content: '';
-  display: block;
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: -6px;
-  width: 0%;
-  height: 3px;
-  background: linear-gradient(90deg, var(--accent-oro) 10%, var(--accent-oro-light) 88%);
-  border-radius: 1px;
-  transition: var(--transition-fine);
+  display: none;
+  /* Removing the underline effect */
 }
 
 .nav-links a:hover,
 .nav-links a:focus-visible {
-  color: var(--accent-oro-dark);
-  background: rgba(228, 192, 102, 0.12);
   opacity: 1;
-  transform: translateY(-1px);
-}
-
-.nav-links a:hover::after,
-.nav-links a.active::after {
-  width: 100%;
+  color: #000;
 }
 
 .nav-links a.active {
-  color: var(--accent-oro-dark);
   opacity: 1;
-  font-weight: 900;
+  color: #000;
+  font-weight: 600;
+  /* Subtle bold for active */
 }
 
 /* Mobile Menu Toggle Button */
@@ -807,13 +794,6 @@ body {
 .footer-brand .logo img {
   height: 100px;
   width: auto;
-  /* Safari rendering fixes for crisp SVG display */
-  image-rendering: -webkit-optimize-contrast;
-  image-rendering: crisp-edges;
-  transform: translate3d(0, 0, 0);
-  backface-visibility: hidden;
-  -webkit-backface-visibility: hidden;
-  -webkit-font-smoothing: subpixel-antialiased;
 }
 
 .footer-brand p {
