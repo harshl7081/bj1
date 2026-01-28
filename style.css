@@ -204,11 +204,13 @@ body {
 .hero {
   min-height: 100vh;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
+  /* Moved to top */
   position: relative;
   background: linear-gradient(120deg, #fffbee 55%, #f6efd3 91%);
   overflow: hidden;
-  padding-top: 180px;
+  padding-top: 240px;
+  /* Positioned nicely under the new navbar */
 }
 
 .hero-bg,
@@ -231,7 +233,8 @@ body {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  filter: brightness(0.65) contrast(1.15) saturate(1.0);
+  /* Removed filter or lightened it to show video true colors */
+  filter: brightness(0.85) contrast(1.1);
   animation: heroZoom 28s cubic-bezier(.35, .7, .33, 1) infinite alternate;
   display: block;
   z-index: 0;
@@ -248,7 +251,7 @@ body {
 }
 
 .hero .overlay {
-  background: radial-gradient(ellipse at 50% 50%, rgba(255, 255, 255, 0.35) 0%, rgba(255, 255, 255, 0.55) 50%, rgba(255, 255, 255, 0.75) 100%);
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0.4) 100%);
   pointer-events: none;
   z-index: 1;
 }
@@ -256,9 +259,10 @@ body {
 .hero-content {
   position: relative;
   z-index: 2;
-  max-width: 900px;
+  max-width: 1600px;
+  /* Much wider to fit single line */
   margin-inline: auto;
-  width: 100%;
+  width: 95%;
   padding-inline: 2rem;
   text-align: center;
   opacity: 0;
@@ -275,13 +279,17 @@ body {
 
 .hero-title {
   font-family: var(--fnt-display);
-  font-size: clamp(2.5rem, 6.5vw, 5rem);
+  /* Responsive sizing to ensure it stays on one line */
+  font-size: clamp(1.5rem, 5vw, 5.5rem);
   font-weight: 900;
   letter-spacing: .02em;
   line-height: 1.1;
-  margin-bottom: 1.2em;
-  color: var(--fg-italy);
-  text-shadow: 0 2px 12px rgba(23, 51, 60, 0.15), 0 4px 24px rgba(23, 51, 60, 0.08);
+  margin-bottom: 0.8em;
+  color: #ffffff;
+  /* Switched to white for dark video background */
+  text-shadow: 0 4px 24px rgba(0, 0, 0, 0.5);
+  white-space: nowrap;
+  /* Forces single line */
 }
 
 .hero-title .accent {
@@ -303,16 +311,18 @@ body {
 }
 
 .hero-subtitle {
-  font-size: clamp(1.1rem, 1.5vw, 1.35rem);
-  max-width: 600px;
+  font-size: clamp(1rem, 1.2vw, 1.2rem);
+  max-width: 700px;
+  /* Slightly wider for balance */
   margin-inline: auto;
   margin-bottom: 2.5rem;
-  color: #4a453d;
+  color: #f0f0f0;
+  /* Light text for readability */
   font-family: var(--fnt-serif);
-  font-weight: 500;
-  letter-spacing: .3px;
+  font-weight: 400;
+  letter-spacing: .5px;
   line-height: 1.6;
-  text-shadow: 0 1px 4px rgba(255, 255, 255, 0.9);
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.6);
 }
 
 .hero-actions {
@@ -389,67 +399,64 @@ body {
 }
 
 /* Elegant scroll indicator with animated arrow */
+/* Elegant scroll indicator */
 .scroll-indicator {
   position: absolute;
   left: 50%;
-  bottom: 40px;
+  bottom: 30px;
   transform: translateX(-50%);
+  opacity: 0.8;
+  z-index: 4;
+  pointer-events: none;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 8px;
-  opacity: 0.6;
-  z-index: 4;
-  pointer-events: none;
-  user-select: none;
-  transition: opacity 0.3s;
-}
-
-.scroll-indicator:hover {
-  opacity: 0.8;
+  gap: 10px;
 }
 
 .scroll-indicator span {
-  font-size: 0.75rem;
-  font-family: var(--fnt-display);
-  letter-spacing: 3px;
-  font-weight: 600;
-  color: var(--accent-oro-dark);
+  font-size: 0.65rem;
+  font-family: var(--fnt-sans);
+  letter-spacing: 2px;
   text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.8);
+  margin-bottom: 5px;
 }
 
 .scroll-indicator .arrow {
-  width: 2px;
-  height: 32px;
-  background: linear-gradient(180deg, var(--accent-oro) 0%, rgba(228, 192, 102, 0.3) 100%);
+  width: 26px;
+  height: 42px;
+  border: 2px solid rgba(255, 255, 255, 0.8);
+  /* White border for dark bg */
+  border-radius: 20px;
   position: relative;
-  animation: scrollBounce 2s ease-in-out infinite;
+  background: transparent;
 }
 
 .scroll-indicator .arrow::after {
   content: '';
   position: absolute;
-  bottom: 0;
+  top: 6px;
   left: 50%;
   transform: translateX(-50%);
-  width: 0;
-  height: 0;
-  border-left: 4px solid transparent;
-  border-right: 4px solid transparent;
-  border-top: 6px solid var(--accent-oro);
+  width: 4px;
+  height: 6px;
+  background: #fff;
+  border-radius: 2px;
+  animation: scrollWheel 2s infinite;
+  border: none;
+  /* Resetting previous styles */
 }
 
-@keyframes scrollBounce {
-
-  0%,
-  100% {
-    transform: translateY(0);
-    opacity: 0.6;
+@keyframes scrollWheel {
+  0% {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
   }
 
-  50% {
-    transform: translateY(8px);
-    opacity: 1;
+  100% {
+    opacity: 0;
+    transform: translateX(-50%) translateY(15px);
   }
 }
 
