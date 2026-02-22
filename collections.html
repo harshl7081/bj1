@@ -4,12 +4,12 @@
 <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Collections | Beautiful Jewel</title>
+        <title>Collections | Beautiful Jewel — Luxury Diamond Jewellery</title>
         <meta name="description"
                 content="Explore the complete collection of Beautiful Jewel. Premium quality Ladies Bangles, Earrings, Rings, Bracelets, Pendants and more.">
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Montserrat:wght@100..900&display=swap"
+        <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=Inter:wght@100..900&display=swap"
                 rel="stylesheet">
         <link rel="icon" type="image/svg+xml" href="/images/picsvg_download.svg">
         <link rel="apple-touch-icon" href="/images/picsvg_download.svg">
@@ -17,7 +17,19 @@
 </head>
 
 <body>
-        <header class="header">
+        <!-- Loading Screen -->
+        <div class="loader" id="loader">
+                <div class="loader-content">
+                        <img src="/images/picsvg_download.svg" alt="Beautiful Jewel" class="loader-logo">
+                        <div class="loader-line"></div>
+                </div>
+        </div>
+
+        <!-- Custom Cursor -->
+        <div class="cursor-dot" id="cursorDot"></div>
+        <div class="cursor-ring" id="cursorRing"></div>
+
+        <header class="header" id="mainHeader">
                 <nav class="nav container">
                         <div class="logo">
                                 <a href="/index.html"><img src="/images/picsvg_download.svg" alt="Beautiful Jewel"></a>
@@ -40,6 +52,7 @@
         <main>
                 <section class="hero-small">
                         <div class="container">
+                                <span class="tag" style="margin-bottom: 2rem;">Full Catalogue</span>
                                 <h1 class="hero-title">Our <span class="accent">Collections</span></h1>
                                 <p class="hero-subtitle">Premium quality jewellery crafted with precision and passion
                                         since 1998.</p>
@@ -47,7 +60,7 @@
                 </section>
 
                 <!-- Video Showcase Section -->
-                <section class="section" style="background: linear-gradient(120deg, #fffbee 55%, #f6efd3 91%);">
+                <section class="section" style="background: var(--bg-secondary);">
                         <div class="container">
                                 <div class="section-header">
                                         <span class="tag">Artistry in Motion</span>
@@ -61,13 +74,13 @@
                                                                 type="video/mp4">
                                                 </video>
                                         </div>
-                                        <div class="video-item reveal">
+                                        <div class="video-item reveal reveal-delay-1">
                                                 <video autoplay muted loop playsinline>
                                                         <source src="/images/beautifuljewelsurat_1726742677_3460490596737730742_12517781726.mp4"
                                                                 type="video/mp4">
                                                 </video>
                                         </div>
-                                        <div class="video-item reveal">
+                                        <div class="video-item reveal reveal-delay-2">
                                                 <video autoplay muted loop playsinline>
                                                         <source src="/images/beautifuljewelsurat_1729248472_3481510774431970712_12517781726.mp4"
                                                                 type="video/mp4">
@@ -79,13 +92,13 @@
                                                                 type="video/mp4">
                                                 </video>
                                         </div>
-                                        <div class="video-item reveal">
+                                        <div class="video-item reveal reveal-delay-1">
                                                 <video autoplay muted loop playsinline>
                                                         <source src="/images/beautifuljewelsurat_1728789802_3477663171547259834_12517781726.mp4"
                                                                 type="video/mp4">
                                                 </video>
                                         </div>
-                                        <div class="video-item reveal">
+                                        <div class="video-item reveal reveal-delay-2">
                                                 <video autoplay muted loop playsinline>
                                                         <source src="/images/beautifuljewelsurat_1730279240_3490157492845137940_12517781726.mp4"
                                                                 type="video/mp4">
@@ -99,9 +112,11 @@
                 <section class="gallery section">
                         <div class="container">
                                 <div class="section-header">
+                                        <span class="tag">Gallery</span>
                                         <h2 class="section-title">Complete Collection Gallery</h2>
                                         <p class="section-subtitle">Browse our entire range of exquisite jewellery
-                                                pieces - over 100 stunning designs.</p>
+                                                pieces — over 100
+                                                stunning designs.</p>
                                 </div>
                                 <div class="gallery-grid">
                                         <div class="gallery-item reveal"><img
@@ -398,6 +413,19 @@
                                 </div>
                         </div>
                 </section>
+
+                <!-- CTA -->
+                <section class="cta-section" style="background: var(--bg-secondary);">
+                        <div class="container">
+                                <span class="tag" style="margin-bottom: 2rem;">Made for You</span>
+                                <h2 class="section-title">Didn't Find What You're Looking For?</h2>
+                                <p class="section-subtitle">Our bespoke service can create the perfect piece tailored to
+                                        your
+                                        vision.</p>
+                                <a href="/bespoke.html" class="btn btn-primary" style="margin-top: 2rem;">Explore
+                                        Bespoke</a>
+                        </div>
+                </section>
         </main>
 
         <footer class="footer">
@@ -407,8 +435,8 @@
                                         <div class="logo">
                                                 <img src="/images/picsvg_download.svg" alt="Beautiful Jewel">
                                         </div>
-                                        <p>Beautiful Jewel: Manufacturer & Exporter of Real Diamond Jewellery since
-                                                1998.</p>
+                                        <p>Manufacturer & Exporter of Real Diamond Jewellery. A legacy of brilliance
+                                                since 1998.</p>
                                 </div>
                                 <div class="footer-links">
                                         <h4>Explore</h4>
@@ -420,17 +448,18 @@
                                 </div>
                                 <div class="footer-links">
                                         <h4>Connect</h4>
-                                        <div class="social-links">
-                                                <a href="https://www.instagram.com/beautifuljewelsurat"
-                                                        target="_blank">Instagram</a>
-                                                <a href="https://www.facebook.com/beautifuljewelsurat?ref=bookmarks"
-                                                        target="_blank">Facebook</a>
-                                        </div>
+                                        <ul>
+                                                <li><a href="https://www.instagram.com/beautifuljewelsurat"
+                                                                target="_blank">Instagram</a></li>
+                                                <li><a href="https://www.facebook.com/beautifuljewelsurat?ref=bookmarks"
+                                                                target="_blank">Facebook</a></li>
+                                        </ul>
                                 </div>
                         </div>
                         <div class="footer-bottom">
                                 <p>&copy; 2026 Beautiful Jewel Company. All rights reserved.</p>
                         </div>
+                </div>
         </footer>
 
         <script type="module" src="/main.js"></script>

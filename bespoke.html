@@ -4,13 +4,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bespoke | Beautiful Jewel</title>
+    <title>Bespoke | Beautiful Jewel — Custom Diamond Jewellery</title>
     <meta name="description"
-        content="Custom jewelry design and bespoke craftsmanship by Beautiful Jewel. Bring your vision to life.">
+        content="Custom jewelry design and bespoke craftsmanship by Beautiful Jewel. Bring your vision to life with our master artisans.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
-        href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Montserrat:wght@100..900&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=Inter:wght@100..900&display=swap"
         rel="stylesheet">
     <link rel="icon" type="image/svg+xml" href="/images/picsvg_download.svg">
     <link rel="apple-touch-icon" href="/images/picsvg_download.svg">
@@ -18,7 +18,19 @@
 </head>
 
 <body>
-    <header class="header">
+    <!-- Loading Screen -->
+    <div class="loader" id="loader">
+        <div class="loader-content">
+            <img src="/images/picsvg_download.svg" alt="Beautiful Jewel" class="loader-logo">
+            <div class="loader-line"></div>
+        </div>
+    </div>
+
+    <!-- Custom Cursor -->
+    <div class="cursor-dot" id="cursorDot"></div>
+    <div class="cursor-ring" id="cursorRing"></div>
+
+    <header class="header" id="mainHeader">
         <nav class="nav container">
             <div class="logo">
                 <a href="/index.html"><img src="/images/picsvg_download.svg" alt="Beautiful Jewel"></a>
@@ -41,23 +53,25 @@
     <main>
         <section class="hero-small">
             <div class="container">
-                <h1 class="hero-title">Bespoke <span class="accent">Craftmanship</span></h1>
+                <span class="tag" style="margin-bottom: 2rem;">Exclusive Service</span>
+                <h1 class="hero-title">Bespoke <span class="accent">Craftsmanship</span></h1>
                 <p class="hero-subtitle">Your vision, our artistry. Created exclusively for you.</p>
             </div>
         </section>
 
+        <!-- Bespoke Intro -->
         <section class="bespoke section">
             <div class="container bespoke-flex">
                 <div class="bespoke-image reveal">
                     <img src="/images/beautifuljewelsurat_1730720192_3493856665059743433_12517781726.jpg"
                         alt="Jeweler at work">
                 </div>
-                <div class="bespoke-content reveal">
-                    <span class="tag">Exclusive Service</span>
-                    <h2 class="section-title">The Art of the Personal</h2>
+                <div class="bespoke-content reveal reveal-delay-1">
+                    <span class="tag">The Art of the Personal</span>
+                    <h2 class="section-title">One of a Kind</h2>
                     <p>Every piece of jewelry should tell a story as unique as the person wearing it. Our bespoke
-                        service allows you to work directly with our master artisans to design a one-of-a-kind treasure.
-                    </p>
+                        service allows you to work directly with our master artisans to design a one-of-a-kind
+                        treasure.</p>
                     <ul class="feature-list">
                         <li>Private Design Consultations</li>
                         <li>Hand-Selected Ethically Sourced Diamonds</li>
@@ -69,9 +83,43 @@
             </div>
         </section>
 
+        <!-- Process -->
+        <section class="section" style="background: var(--bg-secondary);">
+            <div class="container">
+                <div class="section-header">
+                    <span class="tag">The Journey</span>
+                    <h2 class="section-title">Our Bespoke Process</h2>
+                    <p class="section-subtitle">From initial concept to the final reveal, every step is guided by
+                        excellence.</p>
+                </div>
+                <div class="philosophy-grid">
+                    <div class="philosophy-item reveal">
+                        <span class="philosophy-icon">01</span>
+                        <h3>Consultation</h3>
+                        <p>Share your vision in a private session. We listen, sketch, and explore possibilities
+                            together.</p>
+                    </div>
+                    <div class="philosophy-item reveal reveal-delay-1">
+                        <span class="philosophy-icon">02</span>
+                        <h3>Design & Selection</h3>
+                        <p>Hand-select your diamonds and materials. Review detailed renderings before production
+                            begins.</p>
+                    </div>
+                    <div class="philosophy-item reveal reveal-delay-2">
+                        <span class="philosophy-icon">03</span>
+                        <h3>Creation & Delivery</h3>
+                        <p>Master artisans bring your design to life. Experience the unveiling of your bespoke
+                            masterpiece.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Video Showcase -->
         <section class="video-showcase section">
             <div class="container">
                 <div class="section-header">
+                    <span class="tag">Behind the Scenes</span>
                     <h2 class="section-title">Artisan Process</h2>
                     <p class="section-subtitle">A glimpse into the meticulous world of high-jewelry creation.</p>
                 </div>
@@ -82,13 +130,29 @@
                                 type="video/mp4">
                         </video>
                     </div>
-                    <div class="video-item reveal">
+                    <div class="video-item reveal reveal-delay-1">
                         <video autoplay muted loop playsinline>
                             <source src="/images/beautifuljewelsurat_1728789802_3477663171547259834_12517781726.mp4"
                                 type="video/mp4">
                         </video>
                     </div>
+                    <div class="video-item reveal reveal-delay-2">
+                        <video autoplay muted loop playsinline>
+                            <source src="/images/beautifuljewelsurat_1729248472_3481510774431970712_12517781726.mp4"
+                                type="video/mp4">
+                        </video>
+                    </div>
                 </div>
+            </div>
+        </section>
+
+        <!-- CTA -->
+        <section class="cta-section" style="background: var(--bg-secondary);">
+            <div class="container">
+                <span class="tag" style="margin-bottom: 2rem;">Begin Your Story</span>
+                <h2 class="section-title">Ready to Create Something Extraordinary?</h2>
+                <p class="section-subtitle">Every bespoke journey begins with a conversation.</p>
+                <a href="/contact.html" class="btn btn-primary" style="margin-top: 2rem;">Request a Consultation</a>
             </div>
         </section>
     </main>
@@ -100,7 +164,8 @@
                     <div class="logo">
                         <img src="/images/picsvg_download.svg" alt="Beautiful Jewel">
                     </div>
-                    <p>Beautiful Jewel: Mfr. & Exporter Real Diamond Jewellery. Establishing a legacy since 1998.</p>
+                    <p>Manufacturer & Exporter of Real Diamond Jewellery. A legacy of brilliance since 1998, Surat,
+                        Gujarat.</p>
                 </div>
                 <div class="footer-links">
                     <h4>Explore</h4>
@@ -112,16 +177,17 @@
                 </div>
                 <div class="footer-links">
                     <h4>Connect</h4>
-                    <div class="social-links">
-                        <a href="https://www.instagram.com/beautifuljewelsurat" target="_blank">Instagram</a>
-                        <a href="https://www.facebook.com/beautifuljewelsurat?ref=bookmarks"
-                            target="_blank">Facebook</a>
-                    </div>
+                    <ul>
+                        <li><a href="https://www.instagram.com/beautifuljewelsurat" target="_blank">Instagram</a></li>
+                        <li><a href="https://www.facebook.com/beautifuljewelsurat?ref=bookmarks"
+                                target="_blank">Facebook</a></li>
+                    </ul>
                 </div>
             </div>
             <div class="footer-bottom">
                 <p>&copy; 2026 Beautiful Jewel Company. All rights reserved.</p>
             </div>
+        </div>
     </footer>
 
     <script type="module" src="/main.js"></script>

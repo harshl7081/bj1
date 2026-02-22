@@ -10,7 +10,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
-        href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Montserrat:wght@100..900&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=Inter:wght@100..900&display=swap"
         rel="stylesheet">
     <link rel="icon" type="image/svg+xml" href="/images/picsvg_download.svg">
     <link rel="apple-touch-icon" href="/images/picsvg_download.svg">
@@ -18,7 +18,19 @@
 </head>
 
 <body>
-    <header class="header">
+    <!-- Loading Screen -->
+    <div class="loader" id="loader">
+        <div class="loader-content">
+            <img src="/images/picsvg_download.svg" alt="Beautiful Jewel" class="loader-logo">
+            <div class="loader-line"></div>
+        </div>
+    </div>
+
+    <!-- Custom Cursor -->
+    <div class="cursor-dot" id="cursorDot"></div>
+    <div class="cursor-ring" id="cursorRing"></div>
+
+    <header class="header" id="mainHeader">
         <nav class="nav container">
             <div class="logo">
                 <a href="/index.html"><img src="/images/picsvg_download.svg" alt="Beautiful Jewel"></a>
@@ -39,6 +51,7 @@
     </header>
 
     <main>
+        <!-- Hero — Cinematic -->
         <section class="hero">
             <div class="hero-bg">
                 <div class="overlay"></div>
@@ -46,26 +59,52 @@
                     <source src="/images/My%20Movie.mp4" type="video/mp4">
                 </video>
             </div>
-            <div class="hero-content container">
+            <div class="hero-content">
+                <p class="hero-eyebrow">Est. 1998 · Surat, India</p>
                 <h1 class="hero-title">Crafted for the <span class="accent">Extraordinary</span></h1>
-                <p class="hero-subtitle">Manufacturer & Exporter of Real Diamond Jewellery. A legacy of brilliance since
-                    1998.</p>
+                <p class="hero-subtitle">Manufacturer & Exporter of Real Diamond Jewellery.<br>A legacy of brilliance
+                    spanning over two decades.</p>
+            </div>
+            <div class="hero-bottom">
                 <div class="hero-actions">
                     <a href="/collections.html" class="btn btn-primary">Explore Collection</a>
                     <a href="/bespoke.html" class="btn btn-outline">Bespoke Service</a>
                 </div>
-            </div>
-            <div class="scroll-indicator">
-                <span>SCROLL</span>
-                <div class="arrow"></div>
+                <div class="scroll-indicator">
+                    <span>Scroll</span>
+                    <div class="arrow"></div>
+                </div>
             </div>
         </section>
 
+        <!-- Stats Bar -->
+        <section class="stats-bar">
+            <div class="stat-item reveal">
+                <div class="stat-number">27+</div>
+                <div class="stat-label">Years of Excellence</div>
+            </div>
+            <div class="stat-item reveal reveal-delay-1">
+                <div class="stat-number">100+</div>
+                <div class="stat-label">Unique Designs</div>
+            </div>
+            <div class="stat-item reveal reveal-delay-2">
+                <div class="stat-number">5</div>
+                <div class="stat-label">Product Categories</div>
+            </div>
+            <div class="stat-item reveal reveal-delay-3">
+                <div class="stat-number">∞</div>
+                <div class="stat-label">Commitment to Quality</div>
+            </div>
+        </section>
+
+        <!-- Collections -->
         <section class="collections section">
             <div class="container">
                 <div class="section-header">
+                    <span class="tag">Curated Selection</span>
                     <h2 class="section-title">The Masterpiece Collections</h2>
-                    <p class="section-subtitle">Exquisite designs that transcend time.</p>
+                    <p class="section-subtitle">Each piece tells a story of meticulous craftsmanship, rare materials,
+                        and timeless elegance.</p>
                 </div>
                 <div class="collection-grid">
                     <div class="collection-card reveal">
@@ -75,29 +114,29 @@
                         </div>
                         <div class="card-content">
                             <h3>Timeless Diamonds</h3>
-                            <p>Eternal brilliance captured in every cut.</p>
+                            <p>Eternal brilliance captured in every facet, designed for those who seek perfection.</p>
                             <a href="/collections.html" class="btn-link">View Collection</a>
                         </div>
                     </div>
-                    <div class="collection-card reveal">
+                    <div class="collection-card reveal reveal-delay-1">
                         <div class="card-img-wrapper">
                             <img src="/images/beautifuljewelsurat_1731720973_3502251819969436260_12517781726.jpg"
                                 alt="Golden Elegance">
                         </div>
                         <div class="card-content">
                             <h3>Golden Elegance</h3>
-                            <p>Pure gold, refined for modern luxury.</p>
+                            <p>Pure gold refined for the modern connoisseur. Luxury in its purest form.</p>
                             <a href="/collections.html" class="btn-link">View Collection</a>
                         </div>
                     </div>
-                    <div class="collection-card reveal">
+                    <div class="collection-card reveal reveal-delay-2">
                         <div class="card-img-wrapper">
                             <img src="/images/beautifuljewelsurat_1731376331_3499360755307144878_12517781726.jpg"
                                 alt="Rare Gemstones">
                         </div>
                         <div class="card-content">
                             <h3>Rare Gemstones</h3>
-                            <p>Nature's most vibrant treasures.</p>
+                            <p>Nature's most vibrant treasures, set with precision and artistry.</p>
                             <a href="/collections.html" class="btn-link">View Collection</a>
                         </div>
                     </div>
@@ -105,39 +144,74 @@
             </div>
         </section>
 
-        <section class="gallery section">
+        <!-- Philosophy -->
+        <section class="section" style="background: var(--bg-secondary);">
             <div class="container">
                 <div class="section-header">
-                    <h2 class="section-title">Exquisite Gallery</h2>
+                    <span class="tag">Our Philosophy</span>
+                    <h2 class="section-title">The Art of Perfection</h2>
+                    <p class="section-subtitle">Every piece undergoes a journey of precision, passion, and relentless
+                        pursuit of excellence.</p>
                 </div>
-                <div class="gallery-grid">
-                    <div class="gallery-item reveal"><img
-                            src="/images/beautifuljewelsurat_1722329931_3423474042687166428_12517781726.jpg"
-                            alt="Jewelry Item"></div>
-                    <div class="gallery-item reveal"><img
-                            src="/images/beautifuljewelsurat_1722425421_3424275069907238822_12517781726.jpg"
-                            alt="Jewelry Item"></div>
-                    <div class="gallery-item reveal"><img
-                            src="/images/beautifuljewelsurat_1722562632_3425426085163731637_12517781726.jpg"
-                            alt="Jewelry Item"></div>
-                    <div class="gallery-item reveal"><img
-                            src="/images/beautifuljewelsurat_1722648733_3426148354521430619_12517781726.jpg"
-                            alt="Jewelry Item"></div>
-                    <div class="gallery-item reveal"><img
-                            src="/images/beautifuljewelsurat_1723081632_3429779775428615024_12517781726.jpg"
-                            alt="Jewelry Item"></div>
-                    <div class="gallery-item reveal"><img
-                            src="/images/beautifuljewelsurat_1716255312_3372516455382478188_12517781726.jpg"
-                            alt="Jewelry Item"></div>
+                <div class="philosophy-grid">
+                    <div class="philosophy-item reveal">
+                        <span class="philosophy-icon">◇</span>
+                        <h3>Ethically Sourced</h3>
+                        <p>Every diamond is hand-selected with the highest ethical standards and certified for
+                            authenticity.</p>
+                    </div>
+                    <div class="philosophy-item reveal reveal-delay-1">
+                        <span class="philosophy-icon">✧</span>
+                        <h3>Master Craftsmanship</h3>
+                        <p>Our artisans bring decades of expertise to every cut, setting, and finish.</p>
+                    </div>
+                    <div class="philosophy-item reveal reveal-delay-2">
+                        <span class="philosophy-icon">◆</span>
+                        <h3>Timeless Design</h3>
+                        <p>Designs that transcend trends, becoming heirlooms passed through generations.</p>
+                    </div>
                 </div>
             </div>
         </section>
 
-        <section class="video-showcase section">
+        <!-- Gallery -->
+        <section class="gallery section">
             <div class="container">
                 <div class="section-header">
+                    <span class="tag">Gallery</span>
+                    <h2 class="section-title">Exquisite Gallery</h2>
+                    <p class="section-subtitle">A glimpse into our world of extraordinary craftsmanship.</p>
+                </div>
+                <div class="gallery-grid">
+                    <div class="gallery-item reveal"><img
+                            src="/images/beautifuljewelsurat_1722329931_3423474042687166428_12517781726.jpg"
+                            alt="Jewelry Piece"></div>
+                    <div class="gallery-item reveal"><img
+                            src="/images/beautifuljewelsurat_1722425421_3424275069907238822_12517781726.jpg"
+                            alt="Jewelry Piece"></div>
+                    <div class="gallery-item reveal"><img
+                            src="/images/beautifuljewelsurat_1722562632_3425426085163731637_12517781726.jpg"
+                            alt="Jewelry Piece"></div>
+                    <div class="gallery-item reveal"><img
+                            src="/images/beautifuljewelsurat_1722648733_3426148354521430619_12517781726.jpg"
+                            alt="Jewelry Piece"></div>
+                    <div class="gallery-item reveal"><img
+                            src="/images/beautifuljewelsurat_1723081632_3429779775428615024_12517781726.jpg"
+                            alt="Jewelry Piece"></div>
+                    <div class="gallery-item reveal"><img
+                            src="/images/beautifuljewelsurat_1716255312_3372516455382478188_12517781726.jpg"
+                            alt="Jewelry Piece"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Video Showcase -->
+        <section class="video-showcase section" style="background: var(--bg-secondary);">
+            <div class="container">
+                <div class="section-header">
+                    <span class="tag">Behind the Scenes</span>
                     <h2 class="section-title">Artistry in Motion</h2>
-                    <p class="section-subtitle">Witness the craftsmanship behind every masterpiece.</p>
+                    <p class="section-subtitle">Witness the meticulous craftsmanship behind every masterpiece.</p>
                 </div>
                 <div class="video-grid">
                     <div class="video-item reveal">
@@ -146,19 +220,30 @@
                                 type="video/mp4">
                         </video>
                     </div>
-                    <div class="video-item reveal">
+                    <div class="video-item reveal reveal-delay-1">
                         <video autoplay muted loop playsinline>
                             <source src="/images/beautifuljewelsurat_1726742677_3460490596737730742_12517781726.mp4"
                                 type="video/mp4">
                         </video>
                     </div>
-                    <div class="video-item reveal">
+                    <div class="video-item reveal reveal-delay-2">
                         <video autoplay muted loop playsinline>
                             <source src="/images/beautifuljewelsurat_1729248472_3481510774431970712_12517781726.mp4"
                                 type="video/mp4">
                         </video>
                     </div>
                 </div>
+            </div>
+        </section>
+
+        <!-- CTA -->
+        <section class="cta-section">
+            <div class="container">
+                <span class="tag" style="margin-bottom: 2rem;">Begin Your Journey</span>
+                <h2 class="section-title">Your Vision, Our Artistry</h2>
+                <p class="section-subtitle" style="margin-bottom: 3rem;">Commission a bespoke piece that tells your
+                    unique story. Our master artisans await.</p>
+                <a href="/bespoke.html" class="btn btn-primary">Request a Consultation</a>
             </div>
         </section>
     </main>
@@ -170,8 +255,8 @@
                     <div class="logo">
                         <img src="/images/picsvg_download.svg" alt="Beautiful Jewel">
                     </div>
-                    <p>Beautiful Jewel: Manufacturer & Exporter of Real Diamond Jewellery. Since 1998 in Surat, Gujarat.
-                    </p>
+                    <p>Manufacturer & Exporter of Real Diamond Jewellery. A legacy of brilliance since 1998, Surat,
+                        Gujarat.</p>
                 </div>
                 <div class="footer-links">
                     <h4>Explore</h4>
@@ -182,10 +267,12 @@
                     </ul>
                 </div>
                 <div class="footer-links">
-                    <h4>Contact</h4>
+                    <h4>Connect</h4>
                     <ul>
                         <li><a href="/contact.html">Visit Atelier</a></li>
                         <li><a href="https://www.instagram.com/beautifuljewelsurat" target="_blank">Instagram</a></li>
+                        <li><a href="https://www.facebook.com/beautifuljewelsurat?ref=bookmarks"
+                                target="_blank">Facebook</a></li>
                     </ul>
                 </div>
             </div>
